@@ -1,0 +1,27 @@
+{
+  "name": "x-gravatar",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kazu69/x-gravatar",
+  "authors": [
+    "kazu69 <kazu69web@gmail.com>"
+  ],
+  "description": "A Polymer element for  Gravatar",
+  "main": "x-gravatar.html",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "gravatar"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ],
+  "dependencies": {
+    "platform": "Polymer/platform#~0.2.0",
+    "polymer": "Polymer/polymer#~0.2.0",
+    "polymer-jsonp": "Polymer/polymer-jsonp#~0.2.0",
+    "blueimp-md5": "~1.1.0"
+  }
+}

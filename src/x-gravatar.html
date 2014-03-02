@@ -1,0 +1,48 @@
+<link rel="import" href="../bower_components/polymer-jsonp/polymer-jsonp.html">
+<script src="../bower_components/blueimp-md5/js/md5.min.js"></script>
+<polymer-element name="x-gravatar" attributes="email">
+  <template>
+    <style></style>
+    <polymer-jsonp id="ajax" auto url="//www.gravatar.com/{{hash}}.json?callback="></polymer-jsonp>
+    <div>
+      <template id="profile" repeat="{{user in profile}}">
+        <div id="profile-{{user.id}}">
+          <div class="photo">
+            <a href="{{user.profileUrl}}" title="{{user.displayName}}" rel="nofollow"><img src="{{user.thumbnailUrl}}" alt="{{user.displayName}}"></a>
+          </div>
+            <div class="infomation">
+              <div class="display_name">
+                <span><a href="{{user.profileUrl}}" title="{{user.displayName}}" rel="nofollow">{{user.displayName}}</span></a>
+              </div>
+              <div class="name">
+                <span class="family_name">{{user.name.familyName}}</span>
+                <span class="given_name">{{user.name.givenName}}</span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+  <script>
+
+    Polymer('x-gravatar',{
+       /**
+        * The email for gravatar profile
+        *
+        * @attribute email
+        * @type string
+        * @default ''
+        */
+        email: '',
+        ready: function () {
+          this.hash = md5(this.email);
+          this.$.ajax.addEventListener('polymer-response',
+            function (e) {
+              this.profile = e.detail.response.entry;
+              this.$.profile.model = {profile: e.detail.response.entry};
+            }.bind(this)
+          );
+        }
+    });
+  </script>
+</polymer-element>
